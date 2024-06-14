@@ -140,14 +140,18 @@ const midiNotes = {
 
 function smashNotes(note){
     var notes = SV.getMainEditor().getSelection().getSelectedNotes();
-    if(notes.length == 0)
-        return;
-
-    if(!(note in midiNotes))
-        return;
-
-    for(var notesItr = 0; notesItr < notes.length; notesItr ++) {
-        notes[notesItr].setPitch(midiNotes[note])
+    if (notes.length == 0) {
+        SV.showMessageBox("error", "length error");
+        SV.finish();
+    }
+    else if (!(note in midiNotes)) {
+        SV.showMessageBox("error", "pitch error");
+        SV.finish();
+    }
+    else {
+        for(var notesItr = 0; notesItr < notes.length; notesItr ++) {
+            notes[notesItr].setPitch(midiNotes[note])
+        }
     }
 }
 
@@ -168,5 +172,9 @@ function main() {
     }
 
     var entry = SV.showCustomDialog(messageBox);
-    smashNotes(entry.answers.tb)
+    if (entry.status != 0) {
+        smashNotes(entry.answers.tb);
+    }
+
+    
 }
