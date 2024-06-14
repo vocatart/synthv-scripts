@@ -150,7 +150,7 @@ function smashNotes(note){
     }
     else {
         for(var notesItr = 0; notesItr < notes.length; notesItr ++) {
-            notes[notesItr].setPitch(midiNotes[note])
+            notes[notesItr].setPitch(midiNotes[note]);
         }
     }
 }
