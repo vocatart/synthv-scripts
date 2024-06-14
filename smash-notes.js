@@ -175,6 +175,6 @@ function main() {
     if (entry.status != 0) {
         smashNotes(entry.answers.tb);
     }
-
     
+    SV.finish();
 }
